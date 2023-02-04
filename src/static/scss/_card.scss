@@ -1,0 +1,64 @@
+.card {
+  width: 360px;
+  height: 600px;
+  box-shadow: 0 20px 20px rgb(0 0 0 / 3%), 0 40px 40px rgb(0 0 0 / 6%),
+    0 60px 60px rgb(0 0 0 / 3%), 0 80px 80px rgb(0 0 0 / 10%);
+  border-radius: 30px;
+  background-color: $white;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  padding: 0 28px;
+
+  &__header {
+    margin: 12px 0;
+    img {
+      width: 50px;
+    }
+  }
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__content {
+    height: calc(100% - 98px);
+    overflow-y: scroll;
+  }
+
+  &__content::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 800px) {
+    margin: 20px auto;
+  }
+}
+
+.card::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -20%;
+  left: -50%;
+  z-index: -1;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: $pink;
+  transform: skewX(10deg);
+  animation: wave2 2s ease-in-out infinite alternate;
+}
+
+@keyframes wave2 {
+  0% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(-10deg);
+  }
+}

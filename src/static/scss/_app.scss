@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: "Rubik", sans-serif;
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  max-width: 760px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+main::after {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 100%;
+  width: 300%;
+  height: 100%;
+  transform: translateX(-50%) skewY(-8deg);
+  background-color: $pink;
+  z-index: -1;
+  animation: wave 5s ease-in-out infinite alternate;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-50%) skewY(-4deg);
+  }
+  100% {
+    transform: translateX(-50%) skewY(-8deg);
+  }
+}

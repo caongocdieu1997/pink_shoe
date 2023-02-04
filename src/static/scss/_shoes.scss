@@ -1,0 +1,88 @@
+.shoes {
+  padding: 40px 0;
+  &__img {
+    height: 380px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    img {
+      transform: rotate(-24deg);
+      width: 100%;
+      filter: drop-shadow(0 30px 20px rgba(0, 0, 0, 0.2));
+      margin-left: -16px;
+    }
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 26px 0 20px;
+  }
+
+  &__content {
+    font-size: 13px;
+    color: $gray;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  &__options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__prices {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    &__add-cart {
+      padding: 16px 20px;
+      height: 46px;
+      font-size: 14px;
+      border-radius: 100px;
+      background-color: $pink;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transform: all 0.5s;
+
+      img {
+        width: 20px;
+        animation: show 0.5s ease-in-out;
+      }
+      &.checked {
+        cursor: default;
+        padding: 23px 13px;
+        border-radius: 50%;
+        animation: shorten 0.5s ease-in-out;
+      }
+    }
+  }
+}
+
+@keyframes show {
+  0% {
+    transform: scale(0, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes shorten {
+  0% {
+    padding: 16px 20px;
+    border-radius: 100px;
+  }
+  100% {
+    padding: 23px 13px;
+    border-radius: 50%;
+  }
+}
