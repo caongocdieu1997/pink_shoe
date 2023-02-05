@@ -27,25 +27,28 @@ function App() {
 
   const removeItem = (id) => {
     const listShoe = JSON.parse(localStorage.getItem("shoes")) || [];
-
     const deleteArr = [...deletedArr, id];
     setDeletedArr(deleteArr);
     const newList = listShoe.filter((item) => !deleteArr.includes(item.id));
-    // const newList = listShoe.filter((item) => item.id !== id);
     setTimeout(() => {
       setDeletedArr(deletedArr.filter((item) => item !== id));
       setLocalStorageValue(newList);
     }, 500);
   };
-  // console.log(deletedArr);
 
   const handleChange = (item, qty) => {
     const index = cart.indexOf(item);
     const arr = cart;
     arr[index].quantity += qty;
     if (arr[index].quantity === 0) {
-      let newArr = arr.filter((shoe) => shoe.id !== arr[index].id);
-      setLocalStorageValue([...newArr]);
+      const deleteArr = [...deletedArr, item.id];
+      setDeletedArr(deleteArr);
+      const newList = arr.filter((item) => !deleteArr.includes(item.id));
+
+      setTimeout(() => {
+        setDeletedArr(deletedArr.filter((item) => item !== item.id));
+        setLocalStorageValue(newList);
+      }, 500);
     } else {
       setLocalStorageValue([...arr]);
     }
