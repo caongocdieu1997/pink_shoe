@@ -6,6 +6,8 @@ function App() {
     JSON.parse(localStorage.getItem("shoes")) || []
   );
 
+  const [deletedArr, setDeletedArr] = useState([]);
+
   const setLocalStorageValue = (listData) => {
     localStorage.setItem("shoes", JSON.stringify(listData));
     setCart(listData);
@@ -25,9 +27,17 @@ function App() {
 
   const removeItem = (id) => {
     const listShoe = JSON.parse(localStorage.getItem("shoes")) || [];
-    const newList = listShoe.filter((item) => item.id !== id);
-    setLocalStorageValue(newList);
+
+    const deleteArr = [...deletedArr, id];
+    setDeletedArr(deleteArr);
+    const newList = listShoe.filter((item) => !deleteArr.includes(item.id));
+    // const newList = listShoe.filter((item) => item.id !== id);
+    setTimeout(() => {
+      setDeletedArr(deletedArr.filter((item) => item !== id));
+      setLocalStorageValue(newList);
+    }, 500);
   };
+  // console.log(deletedArr);
 
   const handleChange = (item, qty) => {
     const index = cart.indexOf(item);
@@ -47,7 +57,12 @@ function App() {
         <ShoeList onAdd={handleAddToCart} cart={cart} />
       </Card>
       <Card title="Your cart" visiblePrice={true} cart={cart}>
-        <CartList cart={cart} onDelete={removeItem} onChange={handleChange} />
+        <CartList
+          cart={cart}
+          onDelete={removeItem}
+          onChange={handleChange}
+          deletedArr={deletedArr}
+        />
       </Card>
     </main>
   );

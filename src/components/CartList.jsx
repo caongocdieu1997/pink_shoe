@@ -1,12 +1,17 @@
 import React from "react";
 import { Trash } from "../static/assets";
-const CartList = ({ cart, onDelete, onChange }) => {
+const CartList = ({ cart, onDelete, onChange, deletedArr }) => {
   return (
     <div className="cart">
       {cart.length === 0 && "Cart is Empty"}
       {cart.map((shoe) => {
         return (
-          <div className="cart__item " key={shoe.id}>
+          <div
+            className={`cart__item ${
+              deletedArr.includes(shoe.id) ? "delete" : ""
+            }`}
+            key={shoe.id}
+          >
             <div
               className="cart__item__img"
               style={{ backgroundColor: shoe.color }}
